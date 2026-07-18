@@ -29,7 +29,6 @@ const descriptionEl = document.getElementById("description");
 const amountEl = document.getElementById("amount");
 // The <input> where the user types the dollar amount.
 
-
 // ============================================================
 // SECTION 2: LOADING SAVED DATA FROM THE BROWSER
 // ============================================================
@@ -61,7 +60,6 @@ let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 // `let` (not `const`) is used because this array gets reassigned later
 // in removeTransaction() with `transactions = transactions.filter(...)`.
 
-
 // ============================================================
 // SECTION 3: LISTENING FOR FORM SUBMISSION
 // ============================================================
@@ -76,7 +74,6 @@ transactionFormEl.addEventListener("submit", addTransaction);
 //   reference to the function itself, not calling it right now.
 //   The browser will call it automatically later, when the event fires,
 //   and will automatically pass it an "event object" as an argument.
-
 
 // ============================================================
 // SECTION 4: ADDING A NEW TRANSACTION
@@ -140,7 +137,6 @@ function addTransaction(e) {
   // back to empty/default, so the user can type a new entry.
 }
 
-
 // ============================================================
 // SECTION 5: RE-DRAWING THE TRANSACTION LIST ON THE PAGE
 // ============================================================
@@ -175,7 +171,6 @@ function updateTransactionList() {
     // as the last child inside `transactionListEl` (the <ul>).
   });
 }
-
 
 // ============================================================
 // SECTION 6: BUILDING ONE <li> ELEMENT FOR A TRANSACTION
@@ -229,14 +224,16 @@ function createTransactionElement(transaction) {
   // function (updateTransactionList), so it can be appended to the page.
 }
 
-
 // ============================================================
 // SECTION 7: CALCULATING AND DISPLAYING TOTALS
 // ============================================================
 
 function updateSummary() {
   // 100, -50, 200, -200 => 50
-  const balance = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
+  const balance = transactions.reduce(
+    (acc, transaction) => acc + transaction.amount,
+    0,
+  );
   // `.reduce(callback, initialValue)` walks through every item in the
   // array and "reduces" it down to a single value.
   //   - `acc` ("accumulator") is the running total so far.
@@ -273,7 +270,6 @@ function updateSummary() {
   // Same pattern for the income and expense display elements.
 }
 
-
 // ============================================================
 // SECTION 8: FORMATTING NUMBERS AS CURRENCY
 // ============================================================
@@ -292,7 +288,6 @@ function formatCurrency(number) {
   //     formatCurrency(1234.5) => "$1,234.50"
   //     formatCurrency(-50)    => "-$50.00"
 }
-
 
 // ============================================================
 // SECTION 9: DELETING A TRANSACTION
@@ -320,7 +315,6 @@ function removeTransaction(id) {
   // Same as in addTransaction — redraw the list and totals to reflect
   // the deletion.
 }
-
 
 // ============================================================
 // SECTION 10: INITIAL PAGE LOAD
